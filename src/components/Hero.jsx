@@ -6,14 +6,16 @@ import {
   MapPin,
   Mail,
   Phone,
-  Code2,
   Brain,
   Copy,
   Check,
   Sparkles,
+  Activity,
+  Cpu,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './ui/SocialIcons';
 import heroImg from '../assets/hero.png';
+import SpotlightCard from './ui/SpotlightCard';
 
 const typingRoles = [
   "AI & Machine Learning Engineer",
@@ -28,18 +30,30 @@ export default function Hero() {
   const [displayedText, setDisplayedText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [pulseCount, setPulseCount] = useState(14.2);
+
+  // Live micro-telemetry fluctuation for realism
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPulseCount((prev) => {
+        const delta = (Math.random() - 0.5) * 0.4;
+        return parseFloat(Math.max(12.1, Math.min(16.5, prev + delta)).toFixed(1));
+      });
+    }, 2800);
+    return () => clearInterval(interval);
+  }, []);
 
   // Robust typewriter effect optimized for mobile performance
   useEffect(() => {
     const currentFullText = typingRoles[roleIndex];
-    const typingSpeed = isDeleting ? 30 : 65;
+    const typingSpeed = isDeleting ? 28 : 60;
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
         if (displayedText.length < currentFullText.length) {
           setDisplayedText(currentFullText.slice(0, displayedText.length + 1));
         } else {
-          setTimeout(() => setIsDeleting(true), 1900);
+          setTimeout(() => setIsDeleting(true), 2000);
         }
       } else {
         if (displayedText.length > 0) {
@@ -76,9 +90,9 @@ export default function Hero() {
     >
       {/* Background Lighting Gradients & Mesh (responsive sizing to prevent mobile overflow) */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 -left-20 sm:-left-40 w-72 sm:w-[500px] h-72 sm:h-[500px] bg-indigo-600/10 dark:bg-indigo-600/15 rounded-full blur-[100px] sm:blur-[130px]" />
-        <div className="absolute bottom-1/4 -right-20 sm:-right-40 w-72 sm:w-[500px] h-72 sm:h-[500px] bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-[100px] sm:blur-[130px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 sm:w-[700px] h-96 sm:h-[700px] bg-gradient-to-tr from-indigo-500/5 via-purple-500/5 to-cyan-500/5 rounded-full blur-[120px] sm:blur-[160px]" />
+        <div className="absolute top-1/4 -left-20 sm:-left-40 w-72 sm:w-[520px] h-72 sm:h-[520px] bg-indigo-600/10 dark:bg-indigo-600/20 rounded-full blur-[100px] sm:blur-[140px]" />
+        <div className="absolute bottom-1/4 -right-20 sm:-right-40 w-72 sm:w-[520px] h-72 sm:h-[520px] bg-cyan-500/10 dark:bg-cyan-500/20 rounded-full blur-[100px] sm:blur-[140px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 sm:w-[750px] h-96 sm:h-[750px] bg-gradient-to-tr from-indigo-500/5 via-purple-500/5 to-cyan-500/5 rounded-full blur-[120px] sm:blur-[170px]" />
       </div>
 
       {/* Cyber Grid Pattern */}
@@ -94,12 +108,12 @@ export default function Hero() {
         <div className="grid lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-8 items-center">
           {/* Left Hero Content */}
           <div className="lg:col-span-7 text-center lg:text-left">
-            {/* Status Pill */}
+            {/* Status Pill with Subtle Shimmer */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-3 sm:px-3.5 py-1.5 rounded-full bg-indigo-500/10 dark:bg-white/[0.04] border border-indigo-500/20 dark:border-white/[0.08] text-[11px] sm:text-xs font-medium text-indigo-700 dark:text-cyan-300 mb-5 sm:mb-6 backdrop-blur-md shadow-sm max-w-full truncate"
+              className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 rounded-full bg-indigo-500/10 dark:bg-white/[0.04] border border-indigo-500/25 dark:border-white/[0.1] text-[11px] sm:text-xs font-medium text-indigo-700 dark:text-cyan-300 mb-5 sm:mb-6 backdrop-blur-md shadow-sm max-w-full truncate hover:border-cyan-400/40 transition-colors"
             >
               <span className="relative flex h-2 w-2 flex-shrink-0">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -122,12 +136,12 @@ export default function Hero() {
                 </span>
               </h1>
 
-              {/* Dynamic Tagline Typing (Responsive flex-wrap container so long titles never break on small phones) */}
+              {/* Dynamic Tagline Typing */}
               <div className="min-h-[2.5rem] sm:min-h-[3rem] flex items-center justify-center lg:justify-start mb-4 sm:mb-6">
                 <span className="text-sm xs:text-base sm:text-xl lg:text-2xl font-mono font-medium text-gray-700 dark:text-gray-200 leading-snug break-words">
                   <span className="text-indigo-600 dark:text-cyan-400 mr-1.5 sm:mr-2">&gt;</span>
                   {displayedText}
-                  <span className="animate-pulse inline-block w-2 sm:w-2.5 h-4 sm:h-5 bg-cyan-400 align-middle ml-1" />
+                  <span className="animate-pulse inline-block w-2 sm:w-2.5 h-4 sm:h-5 bg-cyan-400 align-middle ml-1 shadow-[0_0_8px_#38bdf8]" />
                 </span>
               </div>
             </motion.div>
@@ -145,7 +159,7 @@ export default function Hero() {
               <strong className="text-gray-900 dark:text-white font-semibold">Production AI Pipelines</strong>. Bridging mathematical deep learning research with high-throughput full-stack architectures.
             </motion.p>
 
-            {/* Action Buttons (Full-width on extra small mobile, row on sm+) */}
+            {/* Action Buttons */}
             <motion.div
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -155,9 +169,9 @@ export default function Hero() {
               <a
                 href="#research"
                 onClick={(e) => scrollTo(e, '#research')}
-                className="w-full xs:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 shadow-lg shadow-indigo-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
+                className="shimmer-btn w-full xs:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 shadow-lg shadow-indigo-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
               >
-                <Sparkles size={14} />
+                <Sparkles size={14} className="text-cyan-200" />
                 <span>Explore AI Research &amp; Systems</span>
                 <ExternalLink size={14} />
               </a>
@@ -229,34 +243,37 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Hero Graphic Card / Visual Feature */}
+          {/* Right Hero: Hyper-Realistic AI Graph Engine Visualizer */}
           <div className="lg:col-span-5 flex justify-center w-full">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="relative w-full max-w-sm sm:max-w-md"
+              className="relative w-full max-w-sm sm:max-w-md animate-float"
             >
-              {/* Outer Glow Halo */}
-              <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-r from-indigo-500/20 via-cyan-400/15 to-purple-600/20 blur-lg sm:blur-xl opacity-70 group-hover:opacity-100 transition-opacity" />
+              {/* Outer Radiant Glow */}
+              <div className="absolute -inset-2 rounded-3xl bg-gradient-to-r from-indigo-500/25 via-cyan-400/20 to-purple-600/25 blur-xl sm:blur-2xl opacity-75 group-hover:opacity-100 transition-opacity" />
 
-              {/* Main Bento Card */}
-              <div className="relative rounded-3xl bg-white dark:bg-[#121216] border border-gray-200/80 dark:border-white/[0.08] p-4 sm:p-6 shadow-2xl overflow-hidden">
-                {/* Header terminal-style bar */}
+              <SpotlightCard className="p-4 sm:p-6 shadow-2xl">
+                {/* Header Terminal Ticker Bar */}
                 <div className="flex items-center justify-between pb-3 sm:pb-4 mb-3 sm:mb-4 border-b border-gray-100 dark:border-white/[0.08]">
-                  <div className="flex items-center gap-1.5 sm:gap-2">
-                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500/80" />
-                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-amber-500/80" />
-                    <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500/80" />
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-red-500/80 shadow-[0_0_6px_#ef4444]" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 shadow-[0_0_6px_#10b981]" />
+                    <span className="text-[10px] sm:text-[11px] font-mono text-gray-500 dark:text-gray-400 ml-1">
+                      gat_inference_engine.py
+                    </span>
                   </div>
-                  <span className="text-[10px] sm:text-[11px] font-code text-gray-500 dark:text-gray-400">
-                    ai_engineer_profile.json
-                  </span>
+                  <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-[10px] font-mono font-semibold border border-emerald-500/20">
+                    <Activity size={10} className="animate-pulse" />
+                    <span>ONLINE</span>
+                  </div>
                 </div>
 
-                {/* Profile Avatar & Title */}
-                <div className="flex items-center gap-3 sm:gap-4 mb-5 sm:mb-6">
-                  <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 p-[2px] shadow-lg shadow-indigo-500/20 flex-shrink-0">
+                {/* Profile Identity Bar */}
+                <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-5">
+                  <div className="relative w-13 h-13 sm:w-15 sm:h-15 rounded-2xl bg-gradient-to-br from-indigo-500 via-purple-600 to-cyan-400 p-[2px] shadow-lg shadow-indigo-500/20 flex-shrink-0">
                     <div className="w-full h-full rounded-[14px] bg-[#121216] overflow-hidden flex items-center justify-center">
                       <img
                         src={heroImg}
@@ -266,7 +283,7 @@ export default function Hero() {
                           e.target.style.display = 'none';
                         }}
                       />
-                      <span className="font-bold text-lg sm:text-xl text-white">AA</span>
+                      <span className="font-bold text-base sm:text-lg text-white">AA</span>
                     </div>
                   </div>
                   <div className="min-w-0">
@@ -274,55 +291,120 @@ export default function Hero() {
                       Ayon Adhikary
                     </h3>
                     <p className="text-[11px] sm:text-xs text-indigo-600 dark:text-cyan-400 font-mono truncate">
-                      AI Engineer &bull; East West University
+                      AI &bull; Machine Learning Engineer
                     </p>
                     <p className="text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 truncate">
-                      CGPA: <strong className="text-gray-800 dark:text-gray-200">3.33 / 4.00</strong> (2022 – 2026)
+                      East West University &bull; CGPA: <strong className="text-gray-800 dark:text-gray-200">3.33 / 4.00</strong>
                     </p>
                   </div>
                 </div>
 
-                {/* Technical Focus Metric Bars */}
-                <div className="space-y-2.5 sm:space-y-3 mb-5 sm:mb-6 font-code text-xs">
-                  <div className="p-2.5 sm:p-3 rounded-xl bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.05]">
-                    <div className="flex justify-between text-gray-700 dark:text-gray-300 mb-1.5 font-medium text-[11px] sm:text-xs">
-                      <span className="flex items-center gap-1.5 truncate">
-                        <Brain size={13} className="text-indigo-400 flex-shrink-0" />
-                        AI &amp; Graph Neural Networks
-                      </span>
-                      <span className="text-cyan-400 flex-shrink-0">GAT / SHAP XAI</span>
-                    </div>
-                    <div className="w-full h-1.5 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div className="w-[94%] h-full rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400" />
-                    </div>
+                {/* Living Topological Graph Architecture Graphic (SVG) */}
+                <div className="relative rounded-2xl bg-gray-50 dark:bg-black/30 border border-gray-100 dark:border-white/[0.06] p-3 mb-4 sm:mb-5 overflow-hidden">
+                  <div className="flex items-center justify-between text-[10px] font-mono text-gray-400 mb-2">
+                    <span className="flex items-center gap-1">
+                      <Brain size={11} className="text-indigo-400" /> GAT AST Topology
+                    </span>
+                    <span className="text-cyan-400">8 Attention Heads</span>
                   </div>
 
-                  <div className="p-2.5 sm:p-3 rounded-xl bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.05]">
-                    <div className="flex justify-between text-gray-700 dark:text-gray-300 mb-1.5 font-medium text-[11px] sm:text-xs">
-                      <span className="flex items-center gap-1.5 truncate">
-                        <Code2 size={13} className="text-cyan-400 flex-shrink-0" />
-                        Production AI &amp; Web Serving
-                      </span>
-                      <span className="text-indigo-400 flex-shrink-0">PyTorch / MERN</span>
-                    </div>
-                    <div className="w-full h-1.5 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div className="w-[89%] h-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500" />
-                    </div>
+                  {/* Animated SVG Graph Synapse Architecture */}
+                  <svg
+                    viewBox="0 0 340 100"
+                    className="w-full h-24 overflow-visible"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <defs>
+                      <linearGradient id="edgeGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#6366F1" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#38BDF8" stopOpacity="0.8" />
+                      </linearGradient>
+                      <linearGradient id="edgeGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stopColor="#38BDF8" stopOpacity="0.8" />
+                        <stop offset="100%" stopColor="#A855F7" stopOpacity="0.8" />
+                      </linearGradient>
+                      <filter id="glow">
+                        <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
+                        <feMerge>
+                          <feMergeNode in="coloredBlur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+
+                    {/* Dynamic Connecting Synaptic Lines */}
+                    {/* Layer 1 to Layer 2 */}
+                    <line x1="30" y1="25" x2="120" y2="40" stroke="url(#edgeGrad1)" strokeWidth="1.2" strokeDasharray="3 3" />
+                    <line x1="30" y1="25" x2="120" y2="70" stroke="url(#edgeGrad1)" strokeWidth="1" opacity="0.5" />
+                    <line x1="30" y1="55" x2="120" y2="40" stroke="url(#edgeGrad1)" strokeWidth="1.5" />
+                    <line x1="30" y1="55" x2="120" y2="70" stroke="url(#edgeGrad1)" strokeWidth="1.2" />
+                    <line x1="30" y1="80" x2="120" y2="70" stroke="url(#edgeGrad1)" strokeWidth="1.4" strokeDasharray="4 2" />
+
+                    {/* Layer 2 to Layer 3 */}
+                    <line x1="120" y1="40" x2="220" y2="30" stroke="url(#edgeGrad2)" strokeWidth="1.5" />
+                    <line x1="120" y1="40" x2="220" y2="65" stroke="url(#edgeGrad2)" strokeWidth="1.2" opacity="0.7" />
+                    <line x1="120" y1="70" x2="220" y2="30" stroke="url(#edgeGrad2)" strokeWidth="1.2" opacity="0.7" />
+                    <line x1="120" y1="70" x2="220" y2="65" stroke="url(#edgeGrad2)" strokeWidth="1.6" />
+
+                    {/* Layer 3 to Output */}
+                    <line x1="220" y1="30" x2="310" y2="50" stroke="#38BDF8" strokeWidth="1.8" filter="url(#glow)" />
+                    <line x1="220" y1="65" x2="310" y2="50" stroke="#38BDF8" strokeWidth="1.8" filter="url(#glow)" />
+
+                    {/* Layer 1: AST Code Nodes */}
+                    <circle cx="30" cy="25" r="5" fill="#6366F1" filter="url(#glow)" />
+                    <circle cx="30" cy="55" r="6" fill="#818CF8" />
+                    <circle cx="30" cy="80" r="5" fill="#6366F1" />
+
+                    {/* Layer 2: GAT Attention Heads */}
+                    <circle cx="120" cy="40" r="7" fill="#38BDF8" filter="url(#glow)" />
+                    <circle cx="120" cy="70" r="6" fill="#0EA5E9" />
+
+                    {/* Layer 3: Latent Embeddings */}
+                    <circle cx="220" cy="30" r="6" fill="#A855F7" />
+                    <circle cx="220" cy="65" r="7" fill="#C084FC" filter="url(#glow)" />
+
+                    {/* Output Node: Defect Risk & SHAP */}
+                    <circle cx="310" cy="50" r="8" fill="#10B981" filter="url(#glow)" />
+                    <circle cx="310" cy="50" r="14" stroke="#10B981" strokeWidth="1" strokeDasharray="2 2" className="animate-spin origin-[310px_50px]" style={{ animationDuration: '6s' }} />
+                  </svg>
+
+                  <div className="flex justify-between items-center text-[10px] font-mono text-gray-500 pt-1">
+                    <span>C/C++ AST</span>
+                    <span className="text-indigo-400">Graph Attention</span>
+                    <span className="text-purple-400">Latent Vector</span>
+                    <span className="text-emerald-400 font-semibold">Defect XAI</span>
                   </div>
                 </div>
 
-                {/* Quick Badges Grid */}
-                <div className="grid grid-cols-2 gap-2">
-                  <div className="p-2 sm:p-2.5 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-center">
-                    <p className="text-[9px] sm:text-[10px] text-gray-500 dark:text-gray-400 font-mono">Scholarship</p>
-                    <p className="text-[11px] sm:text-xs font-semibold text-indigo-600 dark:text-indigo-300 mt-0.5 truncate">Dean's &amp; Merit</p>
+                {/* Telemetry Grid */}
+                <div className="grid grid-cols-2 gap-2 font-code text-xs mb-4">
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.05]">
+                    <p className="text-[10px] text-gray-400">Latency</p>
+                    <p className="text-xs font-bold text-cyan-400 flex items-center gap-1 mt-0.5">
+                      <Cpu size={12} /> {pulseCount} ms
+                    </p>
                   </div>
-                  <div className="p-2 sm:p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-center">
-                    <p className="text-[9px] sm:text-[10px] text-gray-500 dark:text-gray-400 font-mono">Certified</p>
-                    <p className="text-[11px] sm:text-xs font-semibold text-cyan-600 dark:text-cyan-300 mt-0.5 truncate">UI/UX Designer</p>
+                  <div className="p-2 sm:p-2.5 rounded-xl bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.05]">
+                    <p className="text-[10px] text-gray-400">Explainability</p>
+                    <p className="text-xs font-bold text-purple-400 mt-0.5 truncate">
+                      SHAP Tree
+                    </p>
                   </div>
                 </div>
-              </div>
+
+                {/* Bottom Scholarship & UI/UX Credentials */}
+                <div className="grid grid-cols-2 gap-2 pt-2 border-t border-gray-100 dark:border-white/[0.06]">
+                  <div className="text-center p-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+                    <p className="text-[9px] text-gray-400 font-mono">Scholarship</p>
+                    <p className="text-[11px] font-semibold text-indigo-600 dark:text-indigo-300 truncate">Dean's &amp; Merit</p>
+                  </div>
+                  <div className="text-center p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                    <p className="text-[9px] text-gray-400 font-mono">Certified</p>
+                    <p className="text-[11px] font-semibold text-cyan-600 dark:text-cyan-300 truncate">UI/UX Designer</p>
+                  </div>
+                </div>
+              </SpotlightCard>
             </motion.div>
           </div>
         </div>
