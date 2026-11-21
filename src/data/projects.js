@@ -41,26 +41,6 @@ export const projects = [
     ],
   },
   {
-    id: "livebid-auction",
-    title: "LiveBid – Real-Time Auction Platform",
-    subtitle: "Full-Stack Distributed Web Application",
-    supervisor: null,
-    description:
-      "High-concurrency online bidding platform featuring sub-second live bid synchronization via Socket.io. Features an intelligent Gemini AI bidding assistant providing real-time item valuations, Chart.js financial and price trend analytics, secure JWT authentication, and an executive administrative analytics dashboard for managing multi-tier auctions.",
-    technologies: ["MERN Stack", "React", "Node.js", "Express.js", "Socket.io", "Chart.js", "Gemini API", "Tailwind CSS"],
-    github: "https://github.com/theayon7",
-    demo: null,
-    category: "Full Stack",
-    featured: true,
-    badge: "Full-Stack & AI",
-    metrics: [
-      { label: "Sync Engine", value: "Socket.io WebSockets" },
-      { label: "AI Integration", value: "Gemini API Assistant" },
-      { label: "Analytics", value: "Chart.js Dashboards" },
-      { label: "Database", value: "MongoDB + Mongoose" },
-    ],
-  },
-  {
     id: "thermal-object-detection",
     title: "Thermal Object Detection using YOLO",
     subtitle: "Low-Visibility Computer Vision & Tracking",
@@ -101,6 +81,26 @@ export const projects = [
     ],
   },
   {
+    id: "livebid-auction",
+    title: "LiveBid – Real-Time Auction Platform",
+    subtitle: "Full-Stack Distributed Web Application with Gemini AI",
+    supervisor: null,
+    description:
+      "High-concurrency online bidding platform featuring sub-second live bid synchronization via Socket.io. Features an intelligent Gemini AI bidding assistant providing real-time item valuations, Chart.js financial and price trend analytics, secure JWT authentication, and an executive administrative analytics dashboard for managing multi-tier auctions.",
+    technologies: ["MERN Stack", "React", "Node.js", "Express.js", "Socket.io", "Chart.js", "Gemini API", "Tailwind CSS"],
+    github: "https://github.com/theayon7",
+    demo: null,
+    category: "Full Stack",
+    featured: true,
+    badge: "Full-Stack & AI",
+    metrics: [
+      { label: "Sync Engine", value: "Socket.io WebSockets" },
+      { label: "AI Integration", value: "Gemini API Assistant" },
+      { label: "Analytics", value: "Chart.js Dashboards" },
+      { label: "Database", value: "MongoDB + Mongoose" },
+    ],
+  },
+  {
     id: "apex-network-design",
     title: "Apex University Network Design & Simulation",
     subtitle: "Enterprise Multi-Campus Infrastructure",
@@ -122,4 +122,4 @@ export const projects = [
   },
 ];
 
-export const categories = ["All", "Research & Capstone", "AI & ML", "Full Stack", "Networking"];
+export const categories = ["All", "AI & ML", "Research & Capstone", "Full Stack", "Networking"];

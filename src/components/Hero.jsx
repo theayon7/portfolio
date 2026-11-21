@@ -10,16 +10,17 @@ import {
   Brain,
   Copy,
   Check,
+  Sparkles,
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './ui/SocialIcons';
 import heroImg from '../assets/hero.png';
 
 const typingRoles = [
-  "AI & Machine Learning Researcher",
-  "Full-Stack Web Architect",
-  "Graph Neural Network Enthusiast",
-  "Self-Supervised Learning Specialist",
-  "Computer Vision Developer",
+  "AI & Machine Learning Engineer",
+  "Graph Neural Networks (GAT) Specialist",
+  "Deep Learning & Computer Vision Architect",
+  "Self-Supervised Learning Researcher",
+  "Full-Stack AI Systems Developer",
 ];
 
 export default function Hero() {
@@ -31,7 +32,7 @@ export default function Hero() {
   // Robust typewriter effect optimized for mobile performance
   useEffect(() => {
     const currentFullText = typingRoles[roleIndex];
-    const typingSpeed = isDeleting ? 35 : 75;
+    const typingSpeed = isDeleting ? 30 : 65;
 
     const timer = setTimeout(() => {
       if (!isDeleting) {
@@ -104,7 +105,7 @@ export default function Hero() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
               </span>
-              <span className="truncate">Available for AI, ML &amp; Full-Stack Roles</span>
+              <span className="truncate">Available for AI Engineer &amp; ML Systems Roles</span>
               <span className="text-gray-400 dark:text-gray-500 font-mono text-[10px] hidden xs:inline">&bull; 2026</span>
             </motion.div>
 
@@ -138,10 +139,10 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="text-sm sm:text-base lg:text-lg text-gray-600 dark:text-gray-300 max-w-xl mx-auto lg:mx-0 leading-relaxed mb-6 sm:mb-8"
             >
-              Computer Science graduate from East West University with deep expertise in{" "}
+              Computer Science graduate from East West University specializing in{" "}
               <strong className="text-gray-900 dark:text-white font-semibold">Graph Attention Networks (GAT)</strong>,{" "}
               <strong className="text-gray-900 dark:text-white font-semibold">Self-Supervised Learning (SSL)</strong>, and{" "}
-              <strong className="text-gray-900 dark:text-white font-semibold">MERN Stack</strong> production web applications.
+              <strong className="text-gray-900 dark:text-white font-semibold">Production AI Pipelines</strong>. Bridging mathematical deep learning research with high-throughput full-stack architectures.
             </motion.p>
 
             {/* Action Buttons (Full-width on extra small mobile, row on sm+) */}
@@ -156,7 +157,8 @@ export default function Hero() {
                 onClick={(e) => scrollTo(e, '#research')}
                 className="w-full xs:w-auto inline-flex items-center justify-center gap-2 px-5 sm:px-6 py-3 rounded-xl font-semibold text-xs sm:text-sm text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-cyan-500 hover:from-indigo-500 hover:to-cyan-400 shadow-lg shadow-indigo-500/25 transition-all hover:scale-[1.02] active:scale-[0.98] min-h-[44px]"
               >
-                <span>Explore Research &amp; Work</span>
+                <Sparkles size={14} />
+                <span>Explore AI Research &amp; Systems</span>
                 <ExternalLink size={14} />
               </a>
 
@@ -248,7 +250,7 @@ export default function Hero() {
                     <span className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-emerald-500/80" />
                   </div>
                   <span className="text-[10px] sm:text-[11px] font-code text-gray-500 dark:text-gray-400">
-                    ayon_identity.json
+                    ai_engineer_profile.json
                   </span>
                 </div>
 
@@ -272,7 +274,7 @@ export default function Hero() {
                       Ayon Adhikary
                     </h3>
                     <p className="text-[11px] sm:text-xs text-indigo-600 dark:text-cyan-400 font-mono truncate">
-                      B.Sc. CSE &bull; East West University
+                      AI Engineer &bull; East West University
                     </p>
                     <p className="text-[10px] sm:text-[11px] text-gray-500 dark:text-gray-400 truncate">
                       CGPA: <strong className="text-gray-800 dark:text-gray-200">3.33 / 4.00</strong> (2022 – 2026)
@@ -288,10 +290,10 @@ export default function Hero() {
                         <Brain size={13} className="text-indigo-400 flex-shrink-0" />
                         AI &amp; Graph Neural Networks
                       </span>
-                      <span className="text-cyan-400 flex-shrink-0">GAT / SHAP</span>
+                      <span className="text-cyan-400 flex-shrink-0">GAT / SHAP XAI</span>
                     </div>
                     <div className="w-full h-1.5 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div className="w-[92%] h-full rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400" />
+                      <div className="w-[94%] h-full rounded-full bg-gradient-to-r from-indigo-500 to-cyan-400" />
                     </div>
                   </div>
 
@@ -299,12 +301,12 @@ export default function Hero() {
                     <div className="flex justify-between text-gray-700 dark:text-gray-300 mb-1.5 font-medium text-[11px] sm:text-xs">
                       <span className="flex items-center gap-1.5 truncate">
                         <Code2 size={13} className="text-cyan-400 flex-shrink-0" />
-                        Full-Stack &amp; Real-Time Systems
+                        Production AI &amp; Web Serving
                       </span>
-                      <span className="text-indigo-400 flex-shrink-0">MERN / Socket.io</span>
+                      <span className="text-indigo-400 flex-shrink-0">PyTorch / MERN</span>
                     </div>
                     <div className="w-full h-1.5 bg-gray-200 dark:bg-white/10 rounded-full overflow-hidden">
-                      <div className="w-[88%] h-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500" />
+                      <div className="w-[89%] h-full rounded-full bg-gradient-to-r from-cyan-400 to-purple-500" />
                     </div>
                   </div>
                 </div>
